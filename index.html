@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eid Mubarak</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(120deg, #000000, #131168);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      /* Container */
+      .container {
+        max-width: 600px;
+        padding: 20px;
+      }
+
+      /* Cinematic Text */
+      .cinematic {
+        font-size: 22px;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      /* Letter Text */
+      #letter {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-top: 20px;
+        min-height: 120px;
+      }
+
+      /* Button */
+      button {
+        margin-top: 30px;
+        padding: 12px 25px;
+        border: none;
+        background: #f2cd74;
+        color: black;
+        font-size: 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+
+      /* Popup */
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup-content {
+        background: #131168;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 0 20px #f2cd74;
+      }
+
+      .close {
+        margin-top: 15px;
+        cursor: pointer;
+        color: #f2cd74;
+      }
+
+      /* Glow effect */
+      .glow {
+        text-shadow: 0 0 10px #f2cd74, 0 0 20px #f2cd74;
+      }
+
+      /* Popup List Styling */
+      .popup-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        text-align: left;
+      }
+
+      .popup-content ul li {
+        background: rgba(255, 255, 255, 0.05);
+        margin: 10px 0;
+        padding: 10px 15px;
+        border-left: 3px solid #f2cd74;
+        border-radius: 8px;
+        font-size: 14px;
+        line-height: 1.5;
+        position: relative;
+        transition: 0.3s;
+      }
+
+      /* Hover effect */
+      .popup-content ul li:hover {
+        transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* Small glow dot */
+      .popup-content ul li::before {
+        content: "✨";
+        position: absolute;
+        left: -10px;
+        top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Cinematic Lines -->
+      <div id="line1" class="cinematic">
+        Some blessings cannot be counted...
+      </div>
+      <div id="line2" class="cinematic">Some people cannot be replaced...</div>
+      <div id="line3" class="cinematic glow">And my family is both 💙</div>
+
+      <!-- Letter -->
+      <div id="letter"></div>
+
+      <!-- Button -->
+      <button onclick="openPopup()">Tap for a Special Message 💖</button>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <h2 class="glow">Eid Mubarak 🌙</h2>
+        <ul>
+          <li>
+            May Allah fill your home with peace, barakah, and endless happiness.
+          </li>
+          <li>
+            May your hearts always stay connected with faith, love, and
+            patience.
+          </li>
+          <li>May Allah accept all your duas and forgive your shortcomings.</li>
+          <li>
+            May your lives be guided by the نور of Islam in every step you take.
+          </li>
+          <li>
+            May Allah protect our family from every harm and grant us unity
+            forever.
+          </li>
+          <li>May we all be reunited in Jannah under Allah’s mercy. 🤍✨</li>
+        </ul>
+
+        <div class="close" onclick="closePopup()">Close</div>
+      </div>
+    </div>
+
+    <script>
+      // Cinematic sequence
+      let lines = ["line1", "line2", "line3"];
+      let delay = 0;
+
+      lines.forEach((id, index) => {
+        setTimeout(() => {
+          document.getElementById(id).style.opacity = 1;
+        }, delay);
+        delay += 2000;
+      });
+
+      // Typing Letter
+      const text = `Bismillah...\nDear Ammi, and my beloved family,On this beautiful Eid, I just want to say thank you for your love and care.You are my greatest blessing in life, and I pray that Allah (SWT) keeps us together with happiness and barakah forever.\nEid Mubarak 🌙\n– From your Daughter/Sister 💙`;
+
+      let i = 0;
+      function typeWriter() {
+        if (i < text.length) {
+          if (text.charAt(i) === "\n") {
+            document.getElementById("letter").innerHTML += "<br><br>";
+          } else {
+            document.getElementById("letter").innerHTML += text.charAt(i);
+          }
+
+          i++;
+          setTimeout(typeWriter, 30);
+        }
+      }
+
+      // Start typing after cinematic
+      setTimeout(typeWriter, 6500);
+
+      // Popup functions
+      function openPopup() {
+        document.getElementById("popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
